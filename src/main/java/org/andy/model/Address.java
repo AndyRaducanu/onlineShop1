@@ -8,7 +8,7 @@ public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private  Integer Id;
+    private  Integer id;
     @Column(name = "country")
     private String country;
     @Column(name = "city")
@@ -30,12 +30,12 @@ public class Address {
         this.zipCode = zipCode;
     }
 
-    public Integer getAddressId() {
-        return Id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setAddressId(Integer addressId) {
-        this.Id = addressId;
+    public void setId(Integer Id) {
+        this.id = Id;
     }
 
     public String getCountry() {
@@ -81,7 +81,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "addressId=" + Id +
+                "addressId=" + id +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +

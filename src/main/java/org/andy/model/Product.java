@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "product_id")
-    private Integer productId;
+    @Column(name = "id")
+    private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -25,12 +25,12 @@ public class Product {
         this.manufacturer = manufacturer;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -60,7 +60,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + productId +
+                "productId=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +

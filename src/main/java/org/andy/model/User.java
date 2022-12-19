@@ -11,7 +11,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer Id;
+    private Integer id;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -23,8 +23,8 @@ public class User {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
-    @OneToMany
-    private List<User> users;
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     public User() {
     }
@@ -36,12 +36,12 @@ public class User {
         this.role = role;
     }
 
-    public Integer getUserId() {
-        return Id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setUserId(Integer userId) {
-        this.Id = userId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getEmail() {
@@ -84,18 +84,18 @@ public class User {
         this.address = address;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<Order> getOrders() {
+        return orders;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + Id +
+                "userId=" + id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
