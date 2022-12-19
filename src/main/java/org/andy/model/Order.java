@@ -22,7 +22,12 @@ public class Order {
     @JoinColumn(name = "order_id")
     private User user;
 
-
+    @ManyToMany
+    @JoinTable(
+            name = "order_line",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")}
+    )
     private Set<Product> products;
 
     public Order() {
