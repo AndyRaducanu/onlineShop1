@@ -2,9 +2,18 @@ package org.andy.model;
 
 import org.andy.enums.NameCategory;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "category")
 public class Category {
-    private Integer categoryId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer Id;
+    @Column(name = "name_category")
     private NameCategory nameCategory;
+
 
     public Category() {
     }
@@ -14,11 +23,11 @@ public class Category {
     }
 
     public Integer getCategoryId() {
-        return categoryId;
+        return Id;
     }
 
     public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+        this.Id = categoryId;
     }
 
     public NameCategory getNameCategory() {
@@ -32,7 +41,7 @@ public class Category {
     @Override
     public String toString() {
         return "Category{" +
-                "categoryId=" + categoryId +
+                "categoryId=" + Id +
                 ", nameCategory=" + nameCategory +
                 '}';
     }

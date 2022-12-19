@@ -3,14 +3,15 @@ package org.andy.model;
 import org.andy.enums.Role;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "user_id")
-    private Integer userId;
+    @Column(name = "id")
+    private Integer Id;
     @Column(name = "email")
     private String email;
     @Column(name = "password")
@@ -22,6 +23,8 @@ public class User {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
+    @OneToMany
+    private List<User> users;
 
     public User() {
     }
@@ -34,11 +37,11 @@ public class User {
     }
 
     public Integer getUserId() {
-        return userId;
+        return Id;
     }
 
     public void setUserId(Integer userId) {
-        this.userId = userId;
+        this.Id = userId;
     }
 
     public String getEmail() {
@@ -81,10 +84,18 @@ public class User {
         this.address = address;
     }
 
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
+    }
+
     @Override
     public String toString() {
         return "User{" +
-                "userId=" + userId +
+                "userId=" + Id +
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +

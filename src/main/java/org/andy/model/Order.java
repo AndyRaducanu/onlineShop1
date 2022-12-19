@@ -2,10 +2,22 @@ package org.andy.model;
 
 import org.andy.enums.Status;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "order")
 public class Order {
-    private Integer orderId;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private Integer Id;
+    @Column(name = "total_cost")
     private Integer totalCost;
+    @Column(name = "status")
     private Status status;
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    private User user;
 
     public Order() {
     }
@@ -16,11 +28,11 @@ public class Order {
     }
 
     public Integer getOrderId() {
-        return orderId;
+        return Id;
     }
 
     public void setOrderId(Integer orderId) {
-        this.orderId = orderId;
+        this.Id = orderId;
     }
 
     public Integer getTotalCost() {
@@ -39,10 +51,18 @@ public class Order {
         this.status = status;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
-                "orderId=" + orderId +
+                "orderId=" + Id +
                 ", totalCost=" + totalCost +
                 ", status=" + status +
                 '}';

@@ -7,8 +7,8 @@ import javax.persistence.*;
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "address_id")
-    private  Integer addressId;
+    @Column(name = "id")
+    private  Integer Id;
     @Column(name = "country")
     private String country;
     @Column(name = "city")
@@ -31,11 +31,11 @@ public class Address {
     }
 
     public Integer getAddressId() {
-        return addressId;
+        return Id;
     }
 
     public void setAddressId(Integer addressId) {
-        this.addressId = addressId;
+        this.Id = addressId;
     }
 
     public String getCountry() {
@@ -81,7 +81,7 @@ public class Address {
     @Override
     public String toString() {
         return "Address{" +
-                "addressId=" + addressId +
+                "addressId=" + Id +
                 ", country='" + country + '\'' +
                 ", city='" + city + '\'' +
                 ", street='" + street + '\'' +
