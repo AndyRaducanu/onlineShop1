@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -15,6 +15,7 @@ public class Order {
     @Column(name = "total_cost")
     private Integer totalCost;
     @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
     private Status status;
 
 
