@@ -27,17 +27,20 @@ public class Main {
         Product product1 = new Product(
                 "tv",
                 "bun de 23",
-                "lg"
+                "lg",
+                122d
         );
         Product product2 = new Product(
                 "tv2",
                 "bun de 23",
-                "lgsss"
+                "lgsss",
+                12.2d
         );
         Product product3 = new Product(
                 "telefon",
                 "nou",
-                "lg"
+                "lg",
+                5400d
         );
 
         productRepository.create(product1);
@@ -68,6 +71,7 @@ public class Main {
         orderRepository.delete(order1);
         System.out.println(orderRepository.findAll());
         System.out.println(orderRepository.findById(1));
+        System.out.println(product3);
 
 
 

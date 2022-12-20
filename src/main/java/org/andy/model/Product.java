@@ -16,6 +16,8 @@ public class Product {
     private String description;
     @Column(name = "manufacturer")
     private String manufacturer;
+    @Column(name = "price")
+    private Double price;
     @ManyToMany(mappedBy = "products")
     private Set<Order> orders;
     @ManyToOne
@@ -25,10 +27,11 @@ public class Product {
     public Product() {
     }
 
-    public Product(String name, String description, String manufacturer) {
+    public Product(String name, String description, String manufacturer, Double price) {
         this.name = name;
         this.description = description;
         this.manufacturer = manufacturer;
+        this.price = price;
     }
 
     public Integer getId() {
@@ -79,13 +82,22 @@ public class Product {
         this.category = category;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + id +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +
+                ", price=" + price +
                 '}';
     }
 }
