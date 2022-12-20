@@ -30,6 +30,8 @@ public class Order {
             inverseJoinColumns = {@JoinColumn(name = "product_id")}
     )
     private Set<Product> products;
+    //    TODO daca setam si cantitatea de produse schimbam set in map
+
 
     public Order() {
     }
@@ -87,4 +89,7 @@ public class Order {
                 ", status=" + status +
                 '}';
     }
+
+//    TODO functie totalprice, in functie de ce pret detin produsele din comanda
+//    TODO adauga nr de produse in comanda
 }
