@@ -14,6 +14,8 @@ public class Category {
     private Integer id;
     @Column(name = "name_category")
     private NameCategory nameCategory;
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 
     @OneToMany(mappedBy = "category")
     private List<Product> products;
