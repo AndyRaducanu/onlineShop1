@@ -23,8 +23,8 @@ public class User {
     @OneToOne
     @JoinColumn(name = "address_id")
     private Address address;
-    @OneToMany
-    private List<User> users;
+    @OneToMany(mappedBy = "user")
+    private List<Order> orders;
 
     public User() {
     }
@@ -36,13 +36,7 @@ public class User {
         this.role = role;
     }
 
-    public Integer getUserId() {
-        return Id;
-    }
 
-    public void setUserId(Integer userId) {
-        this.Id = userId;
-    }
 
     public String getEmail() {
         return email;
@@ -84,12 +78,20 @@ public class User {
         this.address = address;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public Integer getId() {
+        return Id;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setId(Integer id) {
+        Id = id;
+    }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Order> orders) {
+        this.orders = orders;
     }
 
     @Override

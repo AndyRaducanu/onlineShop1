@@ -1,6 +1,7 @@
 package org.andy.model;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "product")
@@ -8,7 +9,7 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private Integer productId;
+    private Integer id;
     @Column(name = "name")
     private String name;
     @Column(name = "description")
@@ -16,21 +17,31 @@ public class Product {
     @Column(name = "manufacturer")
     private String manufacturer;
 
+    private Double price;
+    @ManyToMany(mappedBy = "products")
+    private Set<Order> orders;
+
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
+
     public Product() {
     }
 
-    public Product(String name, String description, String manufacturer) {
+    public Product(String name, String description, String manufacturer, Double price) {
         this.name = name;
         this.description = description;
         this.manufacturer = manufacturer;
+        this.price = price;
     }
 
-    public Integer getProductId() {
-        return productId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setProductId(Integer productId) {
-        this.productId = productId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,13 +68,38 @@ public class Product {
         this.manufacturer = manufacturer;
     }
 
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
+    }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     @Override
     public String toString() {
         return "Product{" +
-                "productId=" + productId +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", manufacturer='" + manufacturer + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

@@ -3,21 +3,31 @@ package org.andy.model;
 import org.andy.enums.Status;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
-@Table(name = "order")
+@Table(name = "orders")
 public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer Id;
+    private Integer id;
     @Column(name = "total_cost")
     private Integer totalCost;
+
     @Column(name = "status")
+    @Enumerated(value = EnumType.STRING)
     private Status status;
     @ManyToOne
     @JoinColumn(name = "order_id")
     private User user;
+    @ManyToMany
+    @JoinTable(
+            name = "order_line",
+            joinColumns = {@JoinColumn(name = "order_id")},
+            inverseJoinColumns = {@JoinColumn(name = "product_id")}
+    )
+    private Set<Product> products;
 
     public Order() {
     }
@@ -27,12 +37,12 @@ public class Order {
         this.status = status;
     }
 
-    public Integer getOrderId() {
-        return Id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setOrderId(Integer orderId) {
-        this.Id = orderId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public Integer getTotalCost() {
@@ -59,10 +69,18 @@ public class Order {
         this.user = user;
     }
 
+    public Set<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(Set<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         return "Order{" +
-                "orderId=" + Id +
+                "orderId=" + id +
                 ", totalCost=" + totalCost +
                 ", status=" + status +
                 '}';

@@ -14,7 +14,7 @@ public class SessionManager extends AbstractSessionManager
 
     public static SessionFactory getSessionFactory()
     {
-        return INSTANCE.getSessionFactory("online_shop");
+        return INSTANCE.getSessionFactory("online_shop?serverTimezone=UTC");
     }
 
     public static void shutdown()

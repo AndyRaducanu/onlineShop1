@@ -3,6 +3,7 @@ package org.andy.model;
 import org.andy.enums.NameCategory;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "category")
@@ -10,10 +11,12 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private Integer Id;
+    private Integer id;
     @Column(name = "name_category")
     private NameCategory nameCategory;
 
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
 
     public Category() {
     }
@@ -22,12 +25,12 @@ public class Category {
         this.nameCategory = nameCategory;
     }
 
-    public Integer getCategoryId() {
-        return Id;
+    public Integer getId() {
+        return id;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.Id = categoryId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public NameCategory getNameCategory() {
@@ -38,10 +41,18 @@ public class Category {
         this.nameCategory = nameCategory;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
         return "Category{" +
-                "categoryId=" + Id +
+                "categoryId=" + id +
                 ", nameCategory=" + nameCategory +
                 '}';
     }
