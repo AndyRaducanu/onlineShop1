@@ -49,6 +49,7 @@ public class BaseRepositoryImpl<T> implements BaseRepository<T> {
         try (Session session = SessionManager.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
+
             session.update(entity);
 
             transaction.commit();

@@ -1,8 +1,14 @@
 package org.andy.menu;
 
+import org.andy.model.Address;
+import org.andy.repository.AddressRepository;
+import org.andy.repository.AddressRepositoryImpl;
+
 import java.util.Scanner;
 
 public class AddressMenuImpl {
+    AddressRepository addressRepository = new AddressRepositoryImpl();
+
     public static void showMenu() {
         Scanner scanner = new Scanner(System.in);
         int option;
@@ -18,51 +24,101 @@ public class AddressMenuImpl {
             option = scanner.nextInt();
             switch (option) {
                 case 0: {
-                    // trebuie sa curatam ecranul
-                    System.out.println("Ati ales sa iesiti din pogram");
-                    // ceva cod care sa faca iesirea dn aplicatie
+                    System.out.println("Ati ales sa mergeti la meniul principal");
+
                     break;
                 }
                 case 1: {
-                    // trebuie sa curatam ecranul
                     System.out.println("Ati ales optiunea Add new address");
-                    //ceva cod care sa ma duca la o functie Add new address
+                    addNewAddress();
                     break;
                 }
-                case 2:{
-                    // trebuie sa curatam ecranul
+                case 2: {
                     System.out.println("Ati ales optiunea Update address");
-                    //ceva cod care sa ma duca la o functie Update address
+                    updateAddress();
                     break;
                 }
-                case 3:{
-                    // trebuie sa curatam ecranul
+                case 3: {
                     System.out.println("Ati ales optiunea Delete address");
-                    //ceva cod care sa ma duca in meniul de la Order
+                    deleteAddress();
                     break;
                 }
-                case 4:{
-                    // trebuie sa curatam ecranul
+                case 4: {
                     System.out.println("Ati ales optiunea Display address by ID");
-                    //ceva cod care sa ma duca in meniul de la Product
+                    displayAddressById();
                     break;
                 }
-                case 5:{
-                    // trebuie sa curatam ecranul
+                case 5: {
                     System.out.println("Ati ales optiunea Display all address.");
-                    // ceva apel de functie
-                    break;
-                }
-                case 6:{
-                    // trebuie sa curatam ecranul
-                    System.out.println("Ati ales optiunea sa reveniti la meniul principal");
-                    PrincipalMenuImpl.showMenu();
+                    displayAllAddress();
                     break;
                 }
                 default: {
                     System.out.println("optiunea aleasa nu este corecta");
                 }
             }
-        }while (option != 0);
+        } while (option != 0);
+    }
+
+    public static void addNewAddress() {
+        AddressRepository addressRepository = new AddressRepositoryImpl();
+
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduceti linia pentru country: ");
+        String country = scanner.nextLine();
+        System.out.println("Introduceti linia pentru city: ");
+        String city = scanner.nextLine();
+        System.out.println("Introduceti linia pentru street: ");
+        String street = scanner.nextLine();
+        System.out.println("Introduceti linia pentru zipCode: ");
+        int zipCode = scanner.nextInt();
+        Address address = new Address(country, city, street, zipCode);
+        addressRepository.create(address);
+
+    }
+
+    public static void updateAddress() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduceti id adresa");
+        int id = scanner.nextInt();
+        AddressRepository addressRepository = new AddressRepositoryImpl();
+
+        System.out.println("Introduceti linia pentru country: ");
+        String country = scanner.nextLine();
+        System.out.println("Introduceti linia pentru city: ");
+        String city = scanner.nextLine();
+        System.out.println("Introduceti linia pentru street: ");
+        String street = scanner.nextLine();
+        System.out.println("Introduceti linia pentru zipCode: ");
+        int zipCode = scanner.nextInt();
+        Address address = new Address(country, city, street, zipCode);
+
+        address.setId(id);
+        addressRepository.update(address);
+
+    }
+
+    public static void deleteAddress() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduceti id adresa");
+        int id = scanner.nextInt();
+        AddressRepository addressRepository = new AddressRepositoryImpl();
+        Address address = new Address();
+        address.setId(id);
+        addressRepository.delete(address);
+
+    }
+
+    public static void displayAddressById() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduceti id adresa dorit");
+        int id = scanner.nextInt();
+        AddressRepository addressRepository = new AddressRepositoryImpl();
+        System.out.println(addressRepository.findById(id));
+    }
+
+    public static void displayAllAddress() {
+        AddressRepository addressRepository = new AddressRepositoryImpl();
+        System.out.println(addressRepository.findAll());
     }
 }

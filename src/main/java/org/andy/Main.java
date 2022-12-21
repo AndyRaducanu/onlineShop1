@@ -1,6 +1,7 @@
 package org.andy;
 
 import org.andy.enums.Status;
+import org.andy.menu.AddressMenuImpl;
 import org.andy.menu.PrincipalMenuImpl;
 import org.andy.model.Order;
 import org.andy.model.Product;
@@ -57,8 +58,8 @@ public class Main {
 //        System.out.println(productRepository.findAll());
 
         PrincipalMenuImpl.showMenu();
-     //   SessionManager.shutdown();
-
+//        SessionManager.shutdown();
+//        AddressMenuImpl.addNewAddress();
 
     }
 }

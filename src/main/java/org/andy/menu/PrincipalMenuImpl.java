@@ -1,5 +1,7 @@
 package org.andy.menu;
 
+import org.andy.util.SessionManager;
+
 import java.util.Scanner;
 
 public class PrincipalMenuImpl {
@@ -22,13 +24,13 @@ public class PrincipalMenuImpl {
                 case 0: {
                     // trebuie sa curatam ecranul
                     System.out.println("Ati ales sa iesiti din pogram");
-                    // ceva cod care sa faca iesirea dn aplicatie
+                    SessionManager.shutdown();
                     break;
                 }
                 case 1: {
-                    System.out.print("\u001B[2J");
-                    System.out.print('\f');
-                    System.out.print('\u000C');
+//                    System.out.print("\u001B[2J");
+//                    System.out.print('\f');
+//                    System.out.print('\u000C');
                     System.out.println("Ati ales optiunea Address");
                     AddressMenuImpl.showMenu();
                     //ceva cod care sa ma duca in meniul de la address
@@ -41,8 +43,8 @@ public class PrincipalMenuImpl {
                     break;
                 }
                 case 3:{
-                    System.out.print("\033[H\033[2J");
-                    System.out.flush();
+//                    System.out.print("\033[H\033[2J");
+//                    System.out.flush();
 
                     System.out.println("Ati ales optiunea Order");
                     OrderMenuImpl.showMenu();
@@ -61,7 +63,7 @@ public class PrincipalMenuImpl {
                     break;
                 }
                 default: {
-                    System.out.println("optiunea aleasa nu este corecta");
+                    System.out.println("Optiunea aleasa nu este corecta");
                 }
             }
         }while (option != 0);
