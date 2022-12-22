@@ -80,8 +80,8 @@ public class AddressMenuImpl {
     public static void updateAddress() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Introduceti id adresa");
-        int id = scanner.nextInt();
-        AddressRepository addressRepository = new AddressRepositoryImpl();
+        int id = Integer.valueOf(scanner.nextLine());
+
 
         System.out.println("Introduceti linia pentru country: ");
         String country = scanner.nextLine();
@@ -91,6 +91,7 @@ public class AddressMenuImpl {
         String street = scanner.nextLine();
         System.out.println("Introduceti linia pentru zipCode: ");
         int zipCode = scanner.nextInt();
+        AddressRepository addressRepository = new AddressRepositoryImpl();
         Address address = new Address(country, city, street, zipCode);
 
         address.setId(id);

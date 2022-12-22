@@ -1,5 +1,10 @@
 package org.andy.menu;
 
+import org.andy.model.Address;
+import org.andy.model.Order;
+import org.andy.model.Product;
+import org.andy.repository.*;
+
 import java.util.Scanner;
 
 public class ProductMenuImpl {
@@ -18,51 +23,102 @@ public class ProductMenuImpl {
             option = scanner.nextInt();
             switch (option) {
                 case 0: {
-                    // trebuie sa curatam ecranul
                     System.out.println("Ati ales sa iesiti din pogram");
-                    // ceva cod care sa faca iesirea dn aplicatie
                     break;
                 }
                 case 1: {
-                    // trebuie sa curatam ecranul
                     System.out.println("Ati ales optiunea Add new product");
-                    //ceva cod care sa ma duca la o functie Add new product
+                    addNewProduct();
                     break;
                 }
-                case 2:{
-                    // trebuie sa curatam ecranul
+                case 2: {
                     System.out.println("Ati ales optiunea Update product");
-                    //ceva cod care sa ma duca la o functie Update product
+                    updateProduct();
                     break;
                 }
-                case 3:{
-                    // trebuie sa curatam ecranul
+                case 3: {
                     System.out.println("Ati ales optiunea Delete product");
-                    //ceva cod care sa ma duca in meniul de la Order
+                    deleteProduct();
                     break;
                 }
-                case 4:{
-                    // trebuie sa curatam ecranul
+                case 4: {
+
                     System.out.println("Ati ales optiunea Display product by ID");
-                    //ceva cod care sa ma duca in meniul de la Product
+                    displayProductById();
                     break;
                 }
-                case 5:{
-                    // trebuie sa curatam ecranul
+                case 5: {
                     System.out.println("Ati ales optiunea Display all product.");
-                    // ceva apel de functie
-                    break;
-                }
-                case 6:{
-                    // trebuie sa curatam ecranul
-                    System.out.println("Ati ales optiunea sa reveniti la meniul principal");
-                    PrincipalMenuImpl.showMenu();
+                    displayAllProducts();
                     break;
                 }
                 default: {
                     System.out.println("optiunea aleasa nu este corecta");
                 }
             }
-        }while (option != 0);
+        } while (option != 0);
+    }
+
+    public static void addNewProduct() {
+        ProductRepository productRepository = new ProductRepositoryImpl();
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduceti linia pentru name: ");
+        String name = scanner.nextLine();
+        System.out.println("Introduceti linia pentru description: ");
+        String description = scanner.nextLine();
+        System.out.println("Introduceti linia pentru manufacturer: ");
+        String manufacturer = scanner.nextLine();
+        System.out.println("Introduceti linia pentru price: ");
+        double price = scanner.nextInt();
+        Product product = new Product(name,description,manufacturer,price);
+        productRepository.create(product);
+
+    }
+
+    public static void updateProduct() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduceti id produs");
+        int id = Integer.valueOf(scanner.nextLine());
+
+
+        System.out.println("Introduceti linia pentru name: ");
+        String name = scanner.nextLine();
+        System.out.println("Introduceti linia pentru description: ");
+        String description = scanner.nextLine();
+        System.out.println("Introduceti linia pentru manufacturer: ");
+        String manufacturer = scanner.nextLine();
+        System.out.println("Introduceti linia pentru price: ");
+        double price = scanner.nextInt();
+
+        ProductRepository productRepository = new ProductRepositoryImpl();
+        Product product = new Product(name,description,manufacturer,price);
+
+        product.setId(id);
+        productRepository.update(product);
+
+    }
+
+    public static void deleteProduct() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduceti id produs");
+        int id = scanner.nextInt();
+        ProductRepository productRepository = new ProductRepositoryImpl();
+        Product product = new Product();
+        product.setId(id);
+        productRepository.delete(product);
+
+    }
+
+    public static void displayProductById() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Introduceti id pentru produsul dorit");
+        int id = scanner.nextInt();
+        ProductRepository productRepository = new ProductRepositoryImpl();
+        System.out.println(productRepository.findById(id));
+    }
+
+    public static void displayAllProducts() {
+        ProductRepository productRepository = new ProductRepositoryImpl();
+        System.out.println(productRepository.findAll());
     }
 }
