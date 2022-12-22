@@ -114,14 +114,14 @@ public class UserMenuImpl {
         System.out.println("1.ADMIN");
         System.out.println("2.USER");
         option = Integer.valueOf(scanner.nextLine());
-        Role role = Role.USER;
+        Role role = Role.ADMIN;
         switch (option) {
             case 1 -> {
-                role = Role.USER;
+                role = Role.ADMIN;
                 break;
             }
             case 2 -> {
-                role = Role.ADMIN;
+                role = Role.USER;
                 break;
             }
             default -> {
